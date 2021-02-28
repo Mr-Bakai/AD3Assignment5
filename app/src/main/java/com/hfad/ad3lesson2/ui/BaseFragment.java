@@ -2,6 +2,7 @@ package com.hfad.ad3lesson2.ui;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -28,6 +29,12 @@ public class BaseFragment extends Fragment {
     public BaseFragment(){}
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,6 +50,7 @@ public class BaseFragment extends Fragment {
         FilmStorage.getListFilm(new FilmStorage.Result() {
             @Override
             public void onSuccess(List<Film> film) {
+                listFilm.clear();
                 listFilm.addAll(film);
                 init(view);
             }
@@ -56,17 +64,16 @@ public class BaseFragment extends Fragment {
     private void init(View view) {
         recyclerView = view.findViewById(R.id.recyclerView);
         adapter = new RecyclerAdapter();
-        adapter.setListener(new RecyclerAdapter.Listener() {
-            @Override
-            public void onFilmClick(Film film) {
-                String filmId = film.getId();
+        adapter.setListener(film -> {
 
-                Bundle bundle = new Bundle();
-                bundle.putString("film", filmId);
+            String filmId = film.getId();
 
-                NavController navController = Navigation.findNavController(getActivity(),
-                        R.id.nav_host_fragment);
-                navController.navigate(R.id.filmFragment, bundle);}});
+            Bundle bundle = new Bundle();
+            bundle.putString("film", filmId);
+
+            NavController navController = Navigation.findNavController(getActivity(),
+                    R.id.nav_host_fragment);
+            navController.navigate(R.id.filmFragment, bundle);});
 
         adapter.addList(listFilm);
         recyclerView.setAdapter(adapter);

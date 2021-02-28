@@ -54,14 +54,7 @@ public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ViewH
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    listener.onFilmClick(list.get(getAdapterPosition()));
-                }
-            });
-
+            itemView.setOnClickListener(v -> listener.onFilmClick(list.get(getAdapterPosition())));
             textView  = itemView.findViewById(R.id.textView);
         }
 
