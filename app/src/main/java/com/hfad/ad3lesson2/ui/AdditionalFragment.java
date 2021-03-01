@@ -25,6 +25,8 @@ public class AdditionalFragment extends Fragment {
     private ArrayList<String> listP = new ArrayList<>();
     private Film film;
 
+    People people;
+
     public AdditionalFragment() {
     }
 
@@ -54,27 +56,41 @@ public class AdditionalFragment extends Fragment {
             @Override
             public void onSuccess(List<People> listPeople) {
 
-                String peopleId;
-                String s;
+                if (listP.size() > 2) {
+                    String peopleId;
+                    String s;
 
-                for (int j = 0; j < listP.size(); j++) {
-                    peopleId = listP.get(j);
-                    s = peopleId.substring(39);
+                    for (int j = 0; j < listP.size(); j++) {
+                        peopleId = listP.get(j);
+                        s = peopleId.substring(39);
 
-                    FilmStorage.getPeopleById(s, new FilmStorage.PeopleIdById() {
-                        @Override
-                        public void onSuccess(People peoplebyid) {
-                            list.add(peoplebyid.getName());
-                            init();
-                        }
+                        FilmStorage.getPeopleById(s, new FilmStorage.PeopleIdById() {
+                            @Override
+                            public void onSuccess(People peoplebyid) {
+                                list.add(peoplebyid.getName());
+                                init();
+                            }
 
-                        @Override
-                        public void onFailure(String error) {
-                            Log.e("TAG", "onFailure: " + error);
-                        }
-                    });
+                            @Override
+                            public void onFailure(String error) {
+                                Log.e("TAG", "onFailure: " + error);
+                            }
+                        });
+                    }
+
+                } else {
+
+                   ArrayList<People> listPeop = new ArrayList<>(listPeople);
+
+                    for (int i = 0; i < listPeop.size(); i++) {
+                       people =   listPeop.get(i);
+                       String name = people.getName();
+                       list.add(name);
+                       init();
+                    }
                 }
             }
+
 
             @Override
             public void onFailure(String error) {

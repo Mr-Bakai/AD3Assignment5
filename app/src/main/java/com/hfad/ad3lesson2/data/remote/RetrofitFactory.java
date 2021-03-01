@@ -4,7 +4,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitFactory {
-
     public RetrofitFactory(){}
     private static GhibliAPI instance;
     public static GhibliAPI getInstance(){

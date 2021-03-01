@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdditionalAdapter extends RecyclerView.Adapter<AdditionalAdapter.ViewHolder>{
+
     private List<String> list = new ArrayList<>();
 
     @NonNull
@@ -36,7 +37,6 @@ public class AdditionalAdapter extends RecyclerView.Adapter<AdditionalAdapter.Vi
         this.list = list;
         notifyDataSetChanged();
     }
-
 
     //=================================ViewHolder======================================
     public class ViewHolder extends RecyclerView.ViewHolder{
