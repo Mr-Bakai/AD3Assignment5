@@ -1,9 +1,13 @@
 package com.hfad.ad3lesson2.ui;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import com.hfad.ad3lesson2.R;
 import com.hfad.ad3lesson2.data.model.Film;
@@ -16,7 +20,9 @@ public class FilmFragment extends Fragment {
     private TextView textDesc;
     private TextView textDirector;
     private TextView textProducer;
+    private Button btnPeople;
     private String filmId;
+    private Film filmT;
 
     public FilmFragment(){}
 
@@ -41,6 +47,17 @@ public class FilmFragment extends Fragment {
         textDesc = view.findViewById(R.id.textDesc);
         textDirector = view.findViewById(R.id.textDirector);
         textProducer = view.findViewById(R.id.textProducer);
+        btnPeople = view.findViewById(R.id.btnPeople);
+
+        btnPeople.setOnClickListener(v -> {
+
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("film", filmT);
+
+            NavController navController = Navigation.findNavController(getActivity(),
+                    R.id.nav_host_fragment);
+            navController.navigate(R.id.additionalFragment, bundle);
+        });
     }
 
     private void getFilm() {
@@ -52,6 +69,7 @@ public class FilmFragment extends Fragment {
                 textDesc.setText(film.getDescription());
                 textDirector.setText(film.getDirector());
                 textProducer.setText(film.getProducer());
+                filmT = film;
             }
 
             @Override

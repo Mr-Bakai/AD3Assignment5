@@ -1,5 +1,4 @@
 package com.hfad.ad3lesson2.data.model;
-
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;

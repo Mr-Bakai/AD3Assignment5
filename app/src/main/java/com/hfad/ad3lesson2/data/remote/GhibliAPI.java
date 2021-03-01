@@ -1,6 +1,7 @@
 package com.hfad.ad3lesson2.data.remote;
 
 import com.hfad.ad3lesson2.data.model.Film;
+import com.hfad.ad3lesson2.data.model.People;
 
 import java.util.List;
 
@@ -16,16 +17,19 @@ public interface GhibliAPI {
 
 //    @GET(EndPoints.END_POINTS)
 //    Call<List<Film>> getFilms(
-////            @Path("id") String id
+//            @Path("id") String id
 //    );
-
-
 
     @GET(EndPoints.END_POINTS)
     Call<List<Film>> getFilms();
 
     @GET(EndPoints.END_POINTS_ID)
-    Call<Film> getSpecFilm(
-            @Path("id") String id
+    Call<Film> getSpecFilm(@Path("id") String id
     );
+
+    @GET(EndPoints.END_POINTS_PEOPLE)
+    Call<List<People>> getPeople();
+
+    @GET(EndPoints.END_POINTS_PEOPLE_BY_ID)
+    Call<People> getPeopleById(@Path("id") String id);
 }

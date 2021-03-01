@@ -21,7 +21,7 @@ import java.util.List;
 
 public class BaseFragment extends Fragment {
 
-    private RecyclerAdapter adapter;
+    private FilmAdapter adapter;
     private RecyclerView recyclerView;
     private List<Film> listFilm = new ArrayList<>();
     private NavController navController;
@@ -31,7 +31,6 @@ public class BaseFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -56,14 +55,13 @@ public class BaseFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(String error) {
-            }
+            public void onFailure(String error) {}
         });
     }
 
     private void init(View view) {
         recyclerView = view.findViewById(R.id.recyclerView);
-        adapter = new RecyclerAdapter();
+        adapter = new FilmAdapter();
         adapter.setListener(film -> {
 
             String filmId = film.getId();

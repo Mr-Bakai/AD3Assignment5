@@ -17,4 +17,10 @@
         android:label="fragment_base"
         tools:layout="@layout/fragment_base" />
 
+    <fragment
+        android:id="@+id/additionalFragment"
+        android:name="com.hfad.ad3lesson2.ui.AdditionalFragment"
+        android:label="fragment_additional"
+        tools:layout="@layout/fragment_additional" />
+
 </navigation>

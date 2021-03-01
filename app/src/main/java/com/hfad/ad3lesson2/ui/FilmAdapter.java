@@ -15,7 +15,7 @@ import com.hfad.ad3lesson2.data.model.Film;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerAdapter  extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder>{
+public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.ViewHolder>{
     private List<Film> list = new ArrayList<>();
     private Listener listener;
 
