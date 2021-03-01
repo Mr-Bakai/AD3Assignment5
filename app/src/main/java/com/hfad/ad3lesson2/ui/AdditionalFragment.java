@@ -1,20 +1,15 @@
 package com.hfad.ad3lesson2.ui;
-
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.hfad.ad3lesson2.R;
 import com.hfad.ad3lesson2.data.model.Film;
 import com.hfad.ad3lesson2.data.model.People;
 import com.hfad.ad3lesson2.data.remote.FilmStorage;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +19,7 @@ public class AdditionalFragment extends Fragment {
     private ArrayList<String> list = new ArrayList<>();
     private ArrayList<String> listP = new ArrayList<>();
     private Film film;
-
-    People people;
+    private People people;
 
     public AdditionalFragment() {
     }
@@ -90,7 +84,6 @@ public class AdditionalFragment extends Fragment {
                     }
                 }
             }
-
 
             @Override
             public void onFailure(String error) {
