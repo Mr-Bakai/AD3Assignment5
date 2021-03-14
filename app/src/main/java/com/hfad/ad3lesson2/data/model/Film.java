@@ -1,11 +1,20 @@
 package com.hfad.ad3lesson2.data.model;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.OnConflictStrategy;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.List;
 
+@Entity(tableName = "films")
 public class Film implements Serializable {
 
+    @NonNull
+    @PrimaryKey
     @SerializedName("id")
     private String id;
 
@@ -27,21 +36,26 @@ public class Film implements Serializable {
     @SerializedName("rt_score")
     private String rtScore;
 
+    @Ignore
     @SerializedName("people")
     private List<String> people = null;
 
+    @Ignore
     @SerializedName("species")
     private List<String> species = null;
 
+    @Ignore
     @SerializedName("locations")
     private List<String> locations = null;
 
+    @Ignore
     @SerializedName("vehicles")
     private List<String> vehicles = null;
 
     @SerializedName("url")
     private String url;
 
+    @Ignore
     @SerializedName("length")
     private Object length;
 
@@ -152,20 +166,6 @@ public class Film implements Serializable {
 
     @Override
     public String toString() {
-        return "Film{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", director='" + director + '\'' +
-                ", producer='" + producer + '\'' +
-                ", releaseDate='" + releaseDate + '\'' +
-                ", rtScore='" + rtScore + '\'' +
-                ", people=" + people +
-                ", species=" + species +
-                ", locations=" + locations +
-                ", vehicles=" + vehicles +
-                ", url='" + url + '\'' +
-                ", length=" + length +
-                '}';
+        return "title='" + title + '\'';
     }
 }

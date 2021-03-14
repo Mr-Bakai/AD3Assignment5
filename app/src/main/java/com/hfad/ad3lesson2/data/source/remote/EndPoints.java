@@ -1,4 +1,4 @@
-package com.hfad.ad3lesson2.data.remote;
+package com.hfad.ad3lesson2.data.source.remote;
 
 public class EndPoints {
     public static final String END_POINTS = "films";

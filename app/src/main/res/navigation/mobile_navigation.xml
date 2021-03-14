@@ -13,14 +13,14 @@
 
     <fragment
         android:id="@+id/baseFragment"
-        android:name="com.hfad.ad3lesson2.ui.BaseFragment"
+        android:name="com.hfad.ad3lesson2.ui.start.StartFragment"
         android:label="fragment_base"
-        tools:layout="@layout/fragment_base" />
-
+        tools:layout="@layout/fragment_start" />
     <fragment
-        android:id="@+id/additionalFragment"
-        android:name="com.hfad.ad3lesson2.ui.AdditionalFragment"
-        android:label="fragment_additional"
-        tools:layout="@layout/fragment_additional" />
+        android:id="@+id/filmRoomFragment"
+        android:name="com.hfad.ad3lesson2.ui.film_room.FilmRoomFragment"
+        android:label="film_fragment_room"
+        tools:layout="@layout/film_fragment_room" />
+
 
 </navigation>

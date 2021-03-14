@@ -1,30 +1,23 @@
 package com.hfad.ad3lesson2.ui;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-
-import android.view.LayoutInflater;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import com.hfad.ad3lesson2.R;
 import com.hfad.ad3lesson2.data.model.Film;
-import com.hfad.ad3lesson2.data.remote.FilmStorage;
+import com.hfad.ad3lesson2.data.source.remote.FilmStorage;
+import com.hfad.ad3lesson2.ui.base.BaseFragment;
+import com.hfad.ad3lesson2.databinding.FragmentFilmBinding;
 
-public class FilmFragment extends Fragment {
-
-    private TextView textTitle;
-    private TextView textRD;
-    private TextView textDesc;
-    private TextView textDirector;
-    private TextView textProducer;
-    private Button btnPeople;
+public class FilmFragment extends BaseFragment<FragmentFilmBinding> {
     private String filmId;
-    private Film filmT;
 
     public FilmFragment(){}
+
+    @Override
+    protected FragmentFilmBinding bind() {
+        return FragmentFilmBinding.inflate(getLayoutInflater());
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,47 +25,21 @@ public class FilmFragment extends Fragment {
         if (getArguments() != null) {filmId = getArguments().getString("film");}}
 
     @Override
-    public View onCreateView(LayoutInflater inflater,
-                             ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_film, container, false);
-        init(view);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         getFilm();
-        return view;
-    }
-
-    private void init(View view) {
-        textTitle = view.findViewById(R.id.textTitle);
-        textRD = view.findViewById(R.id.textRD);
-        textDesc = view.findViewById(R.id.textDesc);
-        textDirector = view.findViewById(R.id.textDirector);
-        textProducer = view.findViewById(R.id.textProducer);
-        btnPeople = view.findViewById(R.id.btnPeople);
-
-        btnPeople.setOnClickListener(v -> {
-
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("film", filmT);
-
-            NavController navController = Navigation.findNavController(getActivity(),
-                    R.id.nav_host_fragment);
-            navController.navigate(R.id.additionalFragment, bundle);
-        });
     }
 
     private void getFilm() {
         FilmStorage.getFilmById(filmId, new FilmStorage.FilmClick() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onSuccess(Film film) {
-                textTitle.setText(film.getTitle());
-                textRD.setText(film.getReleaseDate());
-                textDesc.setText(film.getDescription());
-                textDirector.setText(film.getDirector());
-                textProducer.setText(film.getProducer());
-                filmT = film;
+                ui.textTitle.setText(film.getTitle());
+                ui.textRD.setText("Release Date:   "+ film.getReleaseDate());
+                ui.textDesc.setText("Movie Description \n"+ film.getDescription());
+                ui.textDirector.setText("Director:   "+film.getDirector());
+                ui.textProducer.setText("Producer:   "+film.getProducer());
             }
-
             @Override
-            public void onFailure(String error) {
-            }});}
-}
+            public void onFailure(String error) {}});}}
